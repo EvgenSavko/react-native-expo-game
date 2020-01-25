@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { StyleSheet, Text } from 'react-native'
-// import { Button, Text as TextBase } from 'native-base'
+import { StyleSheet, View, Alert } from 'react-native'
+import { Button, Text, Content, Container } from 'native-base'
 
 import MainLayuot from '../component/MainLayout'
 import NavBtns from '../component/NavBtns'
@@ -10,7 +10,13 @@ export default function FlashScreen(props) {
   const { navigate } = props.navigation
   return (
     <MainLayuot>
-      <Text style={styles.title}>Flash !</Text>
+      <Content>
+        <View>
+          <Button style={styles.btn} success onPress={() => Alert.alert('aboutPage')}>
+            <Text>Go to About !</Text>
+          </Button>
+        </View>
+      </Content>
       <NavBtns navigate={navigate} />
     </MainLayuot>
   )
