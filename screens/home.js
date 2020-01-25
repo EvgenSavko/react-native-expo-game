@@ -6,11 +6,10 @@ import { Button, Text as TextBase, Content, Container } from 'native-base'
 import MainLayuot from '../component/MainLayout'
 import NavBtns from '../component/NavBtns'
 
-export default function Home(props) {
-  const navigate = name => {
-    console.log(name)
-    Alert.alert(name)
-  }
+export default function HomeScreen(props) {
+  const { navigate } = props.navigation
+
+  console.log(123, navigate)
   return (
     <MainLayuot>
       <Container>
@@ -19,12 +18,12 @@ export default function Home(props) {
           <Text>Open up App.js to start working on your app!</Text>
 
           <View>
-            <Button style={styles.btn} success onPress={() => navigate('aboutPage')}>
+            <Button style={styles.btn} success onPress={() => Alert.alert('aboutPage')}>
               <TextBase>Go to About !</TextBase>
             </Button>
           </View>
         </Content>
-        <NavBtns />
+        <NavBtns navigate={navigate} />
       </Container>
     </MainLayuot>
   )

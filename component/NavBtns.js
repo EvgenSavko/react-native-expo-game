@@ -3,23 +3,19 @@ import React from 'react'
 import { StyleSheet, View, Alert } from 'react-native'
 import { Footer, FooterTab, Button, Text, Title } from 'native-base'
 
-export default function NavBtns() {
-  const navigate = name => {
-    console.log(name)
-    Alert.alert(name)
-  }
-
+export default function NavBtns({ navigate }) {
+  console.log(2222, navigate)
   return (
     <View>
       <Title>If you feel like:</Title>
       <View style={styles.group}>
-        <Button style={styles.btn} primary onPress={() => navigate('go to old')}>
+        <Button style={styles.btn} primary onPress={() => navigate('Eldest')}>
           <Text>eldest</Text>
         </Button>
-        <Button style={styles.btn} primary onPress={() => navigate('go to young')}>
+        <Button style={styles.btn} primary onPress={() => navigate('Young')}>
           <Text>young</Text>
         </Button>
-        <Button style={styles.btn} primary onPress={() => navigate('go to flash')}>
+        <Button style={styles.btn} primary onPress={() => navigate('Flash')}>
           <Text>flash</Text>
         </Button>
       </View>

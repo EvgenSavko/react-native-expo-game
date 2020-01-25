@@ -4,12 +4,14 @@ import { StyleSheet, Text } from 'react-native'
 // import { Button, Text as TextBase } from 'native-base'
 
 import MainLayuot from '../component/MainLayout'
+import NavBtns from '../component/NavBtns'
 
-export default function Flash() {
+export default function FlashScreen(props) {
+  const { navigate } = props.navigation
   return (
     <MainLayuot>
       <Text style={styles.title}>Flash !</Text>
-      <NavBtns />
+      <NavBtns navigate={navigate} />
     </MainLayuot>
   )
 }

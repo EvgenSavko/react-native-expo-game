@@ -4,12 +4,14 @@ import { StyleSheet, Text } from 'react-native'
 // import { Button, Text as TextBase } from 'native-base'
 
 import MainLayuot from '../component/MainLayout'
+import NavBtns from '../component/NavBtns'
 
-export default function Young() {
+export default function YoungScreen(props) {
+  const { navigate } = props.navigation
   return (
     <MainLayuot>
       <Text style={styles.title}>Young !</Text>
-      <NavBtns />
+      <NavBtns navigate={navigate} />
     </MainLayuot>
   )
 }
