@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { StyleSheet, View, Alert } from 'react-native'
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base'
+import { Footer, FooterTab, Button, Text, Title } from 'native-base'
 
 export default function NavBtns() {
   const navigate = name => {
@@ -10,22 +10,19 @@ export default function NavBtns() {
   }
 
   return (
-    <View style={styles.group}>
-      <Container>
-        <Footer>
-          <FooterTab>
-            <Button onPress={() => navigate('go to old')}>
-              <Text style={styles.old_text}>old</Text>
-            </Button>
-            <Button onPress={() => navigate('go to young')}>
-              <Text style={styles.young_text}>young</Text>
-            </Button>
-            <Button onPress={() => navigate('go to flash')}>
-              <Text style={styles.flash_text}>flash</Text>
-            </Button>
-          </FooterTab>
-        </Footer>
-      </Container>
+    <View>
+      <Title>If you feel like:</Title>
+      <View style={styles.group}>
+        <Button style={styles.btn} primary onPress={() => navigate('go to old')}>
+          <Text>eldest</Text>
+        </Button>
+        <Button style={styles.btn} primary onPress={() => navigate('go to young')}>
+          <Text>young</Text>
+        </Button>
+        <Button style={styles.btn} primary onPress={() => navigate('go to flash')}>
+          <Text>flash</Text>
+        </Button>
+      </View>
     </View>
   )
 }
@@ -35,16 +32,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   group: {
+    marginTop: 10,
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
-  flash_text: {
-    color: 'red',
-  },
-  young_text: {
-    color: 'green',
-  },
-  old_text: {
-    color: 'brown',
+  btn: {
+    textAlign: 'center',
   },
 })
