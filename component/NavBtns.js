@@ -9,13 +9,13 @@ export default function NavBtns({ navigate }) {
     <View>
       <Title>If you feel like:</Title>
       <View style={styles.group}>
-        <Button style={styles.btn} primary onPress={() => navigate('Eldest')}>
+        <Button style={styles.btn} info onPress={() => navigate('Eldest')}>
           <Text>eldest</Text>
         </Button>
-        <Button style={styles.btn} primary onPress={() => navigate('Young')}>
+        <Button style={styles.btn} info onPress={() => navigate('Young')}>
           <Text>young</Text>
         </Button>
-        <Button style={styles.btn} primary onPress={() => navigate('Flash')}>
+        <Button style={styles.btn} info onPress={() => navigate('Flash')}>
           <Text>flash</Text>
         </Button>
       </View>

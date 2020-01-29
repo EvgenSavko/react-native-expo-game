@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { StyleSheet, View, Alert } from 'react-native'
+import { StyleSheet, View, Dimensions } from 'react-native'
 import { Button, Text, Content, Container } from 'native-base'
 
 import MainLayuot from '../component/MainLayout'
@@ -8,15 +8,52 @@ import NavBtns from '../component/NavBtns'
 
 export default function HomeScreen(props) {
   const { navigate } = props.navigation
+  const [counter, setCounter] = useState(0)
+  const [start, setStart] = useState(false)
+  const [margin, setMargin] = useState({ top: 0, left: 0 })
 
-  console.log(123, navigate)
+  useEffect(() => {
+    let interval = setInterval(() => {
+      start && getRundom()
+    }, 1000)
+
+    if (counter > 15) {
+      setMargin({ top: 25, left: 25 })
+      setStart(false)
+      setCounter(0)
+      clearInterval(interval)
+    }
+    return () => clearInterval(interval)
+  })
+
+  function getRundom() {
+    const { height, width } = Dimensions.get('screen')
+    const w = randomInt(0, width - 30)
+    const h = randomInt(0, height - 60)
+    setMargin({ top: h, left: w })
+  }
+
+  function randomInt(min, max) {
+    return min + Math.floor((max - min) * Math.random())
+  }
+
   return (
     <MainLayuot>
       <Container>
+        <Text>counter : {counter}</Text>
         <Content>
-          <View>
-            <Button style={styles.btn} success onPress={() => Alert.alert('aboutPage')}>
-              <Text>Go to About !</Text>
+          <View style={{ position: 'absolute', top: margin.top, left: margin.left }}>
+            <Button
+              style={styles.btn}
+              primary
+              onPress={() => {
+                setStart(true)
+                setCounter(counter + 1)
+                getRundom()
+                console.log(start)
+              }}
+            >
+              <Text>Go</Text>
             </Button>
           </View>
         </Content>
@@ -32,5 +69,6 @@ const styles = StyleSheet.create({
   },
   btn: {
     marginTop: 10,
+    width: 50,
   },
 })
