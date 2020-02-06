@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 
-export default function MainLayuot(props) {
+export default function MainLayout(props) {
   return <View style={styles.container}>{props.children}</View>
 }
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { StyleSheet, View, Dimensions } from 'react-native'
+import { StyleSheet, View, Dimensions, TouchableWithoutFeedback } from 'react-native'
 import { Button, Text, Content, Container } from 'native-base'
 
 import MainLayuot from '../component/MainLayout'
@@ -10,23 +10,24 @@ export default function HomeScreen(props) {
   const { navigate } = props.navigation
   const [counter, setCounter] = useState(0)
   const [start, setStart] = useState(false)
-  const [margin, setMargin] = useState({ top: 0, left: 0 })
+  const [margin, setMargin] = useState({ top: 25, left: 25 })
 
   useEffect(() => {
     let interval = setInterval(() => {
-      start && getRundom()
+      start && getRundomMargin()
     }, 1000)
 
     if (counter > 15) {
       setMargin({ top: 25, left: 25 })
       setStart(false)
       setCounter(0)
+      alert('You win !!')
       clearInterval(interval)
     }
     return () => clearInterval(interval)
   })
 
-  function getRundom() {
+  function getRundomMargin() {
     const { height, width } = Dimensions.get('screen')
     const w = randomInt(0, width - 30)
     const h = randomInt(0, height - 60)
@@ -37,19 +38,33 @@ export default function HomeScreen(props) {
     return min + Math.floor((max - min) * Math.random())
   }
 
+  const { height } = Dimensions.get('screen')
+
   return (
     <MainLayuot>
       <Container>
         <Text>counter : {counter}</Text>
         <Content>
+          <TouchableWithoutFeedback
+            onPress={() => {
+              if (start) {
+                alert('You missed it means you lost !!')
+                setCounter(0)
+                setStart(false)
+                setMargin({ top: 25, left: 25 })
+              }
+            }}
+          >
+            <View style={{ height: height / 1.5 }}></View>
+          </TouchableWithoutFeedback>
           <View style={{ position: 'absolute', top: margin.top, left: margin.left }}>
             <Button
               style={styles.btn}
-              primary
+              warning
               onPress={() => {
                 setStart(true)
                 setCounter(counter + 1)
-                getRundom()
+                getRundomMargin()
                 console.log(start)
               }}
             >
